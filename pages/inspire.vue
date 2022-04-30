@@ -1,25 +1,45 @@
 <template>
-  <v-row>
-    <v-col class="text-center">
-      <img
-        src="/v.png"
-        alt="Vuetify.js"
-        class="mb-5"
-      >
-      <blockquote class="blockquote">
-        &#8220;First, solve the problem. Then, write the code.&#8221;
-        <footer>
-          <small>
-            <em>&mdash;John Johnson</em>
-          </small>
-        </footer>
-      </blockquote>
-    </v-col>
-  </v-row>
+  <v-container>
+    <!-- <ApolloMutation
+      :mutation="require('~/apollo/mutations/login')"
+      :variables="{ username, password }"
+      @done="onDone"
+    >
+      <template v-slot="{ mutate }">
+        <v-text-field v-model="username"></v-text-field>
+        <v-text-field v-model="password"></v-text-field>
+        <v-btn @click="mutate()">signin</v-btn>
+      </template>
+    </ApolloMutation>-->
+    <!-- <v-text-field type="file" v-model="userName"></v-text-field> -->
+    <v-text-field v-model="userName"></v-text-field>
+    <v-text-field v-model="password"></v-text-field>
+    <v-btn @click="login({ userName, password })">signin</v-btn>
+    <p v-if="error">error occured {{ error }}</p>
+    {{ token }}
+  </v-container>
 </template>
-
 <script>
+import { mapActions } from "Vuex";
+
 export default {
-  name: 'InspirePage'
-}
+  data() {
+    return {
+      userName: "",
+      password: "",
+      error: null,
+      succesfulData: null,
+      submiting: false,
+      token: "",
+    };
+  },
+  props: {
+    msg: String,
+  },
+  methods: {
+    ...mapActions({
+      login: "login",
+    }),
+  },
+};
 </script>

@@ -38,18 +38,21 @@
       </v-col>
       <v-spacer></v-spacer>
       <v-col cols="5" class="d-flex flex-row justify-end">
-        <v-btn @click="logindialog" class="mx-2"
+        <v-btn @click="logdialog" class="mx-2"
           ><v-icon>mdi-account</v-icon> login</v-btn
         >
-        <v-btn class="mr-2">register</v-btn>
+        <v-btn @click="regdialog" class="mr-2">register</v-btn>
         <v-btn icon @click="$vuetify.theme.dark = !$vuetify.theme.dark"
           ><v-icon v-if="$vuetify.theme.dark == true"
             >mdi-white-balance-sunny</v-icon
           >
           <v-icon v-else>mdi-brightness-3</v-icon></v-btn
         >
-        <v-dialog v-model="dialog" width="40vw">
+        <v-dialog v-model="logindialog" width="40vw">
           <Dialog />
+        </v-dialog>
+        <v-dialog v-model="registerdialog" width="40vw">
+          <Register />
         </v-dialog>
       </v-col>
     </v-row>
@@ -58,6 +61,7 @@
 
 <script>
 import Dialog from "~/components/layout/logindialog";
+import Register from "~/components/layout/registerdialog";
 export default {
   data() {
     return {
@@ -66,9 +70,10 @@ export default {
   },
   components: {
     Dialog,
+    Register,
   },
   computed: {
-    dialog: {
+    logindialog: {
       get: function () {
         return this.$store.state.logindialog;
       },
@@ -76,10 +81,21 @@ export default {
         this.$store.commit("togglelogin");
       },
     },
+    registerdialog: {
+      get: function () {
+        return this.$store.state.registerdialog;
+      },
+      set: function () {
+        this.$store.commit("toggleregister");
+      },
+    },
   },
   methods: {
-    logindialog() {
+    logdialog() {
       this.$store.commit("togglelogin");
+    },
+    regdialog() {
+      this.$store.commit("toggleregister");
     },
   },
 };
