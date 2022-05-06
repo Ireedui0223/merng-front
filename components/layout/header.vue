@@ -25,7 +25,7 @@
         </a>
       </v-col>
       <v-col cols="2">
-        <nuxt-link to="/">
+        <nuxt-link to="inspire">
           <v-img
             :src="
               $vuetify.theme.dark

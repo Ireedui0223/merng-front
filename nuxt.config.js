@@ -33,15 +33,15 @@ export default {
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
-  modules: ["@nuxtjs/apollo"],
+  modules: ["@nuxtjs/apollo", ["cookie-universal-nuxt", { alias: "cookiz" }]],
 
   apollo: {
-    tokeName: "token",
-    authenticationType: "",
+    tokenName: "token",
+    authenticationType: "Bearer ",
     clientConfigs: {
       default: {
         tokenName: "token",
-        authenticationType: "",
+        authenticationType: "Bearer ",
         httpEndpoint: "http://localhost:5000/",
       },
     },

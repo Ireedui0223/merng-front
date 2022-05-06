@@ -13,15 +13,15 @@ export const loginMutation = gql`
 export const registerMutation = gql`
   mutation register(
     $userName: String!
+    $email: String!
     $password: String!
     $confirmPassword: String!
-    $email: String!
   ) {
     register(
       userName: $userName
+      email: $email
       password: $password
       confirmPassword: $confirmPassword
-      email: $email
     ) {
       token
     }

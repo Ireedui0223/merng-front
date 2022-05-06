@@ -1,9 +1,12 @@
 <template>
   <v-app dark>
     <Header />
+    <Snackbar />
+
     <v-divider></v-divider>
     <v-main>
       <v-container>
+        <pre v-if="currentUser">{{ currentUser }}</pre>
         <Nuxt />
       </v-container>
     </v-main>
@@ -11,11 +14,14 @@
 </template>
 
 <script>
+import { userQuery } from "~/apollo/queries/user";
 import Header from "~/components/layout/header";
+import Snackbar from "~/components/layout/snackbar";
 export default {
   name: "DefaultLayout",
   components: {
     Header,
+    Snackbar,
   },
   data() {
     return {
@@ -39,6 +45,11 @@ export default {
       rightDrawer: false,
       title: "Vuetify.js",
     };
+  },
+  apollo: {
+    currentUser: {
+      query: userQuery,
+    },
   },
 };
 </script>

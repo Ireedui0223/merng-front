@@ -8,8 +8,13 @@
         <v-img :src="randomimage"> </v-img>
       </v-col>
       <v-col cols="6" class="d-flex flex-column justify-space-around">
-        <v-card-title class="pl-0 text-h4 text-capitalize">
+        <v-card-title
+          class="pl-0 text-h4 text-capitalize d-flex flex-row justify-space-between"
+        >
           {{ post.userName }}
+          <v-btn style="margin-top: -60px" @click="deletePost(post.id)" icon
+            ><v-icon>mdi-close</v-icon></v-btn
+          >
         </v-card-title>
         <v-card-subtitle class="px-0 text-body-1">
           {{ post.body }}
@@ -109,6 +114,7 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
 export default {
   props: ["post", "randomimage"],
   data() {
@@ -126,7 +132,11 @@ export default {
       this.postDialog = false;
       this.randomcolor = "#" + ((Math.random() * 0xffffff) << 0).toString(16);
     },
+    ...mapActions({
+      deletePost: "deletePost",
+    }),
   },
+
   async mounted() {
     this.randomcolor = "#" + ((Math.random() * 0xffffff) << 0).toString(16);
   },

@@ -12,6 +12,8 @@
       </template>
     </ApolloMutation>-->
     <!-- <v-text-field type="file" v-model="userName"></v-text-field> -->
+    <!-- <pre v-if="currentUser">{{ currentUser }}</pre> -->
+
     <v-text-field v-model="userName"></v-text-field>
     <v-text-field v-model="password"></v-text-field>
     <v-btn @click="login({ userName, password })">signin</v-btn>
@@ -21,6 +23,7 @@
 </template>
 <script>
 import { mapActions } from "Vuex";
+import { userQuery } from "~/apollo/queries/user";
 
 export default {
   data() {
@@ -41,5 +44,10 @@ export default {
       login: "login",
     }),
   },
+  // apollo: {
+  //   currentUser: {
+  //     query: userQuery,
+  //   },
+  // },
 };
 </script>
