@@ -202,7 +202,6 @@ export default {
     Chatlist,
     Sidebar,
   },
-  data: () => ({ drawer: null }),
   data() {
     return {
       user: 0,
