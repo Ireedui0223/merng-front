@@ -115,7 +115,12 @@
                     v-bind="attrs"
                     v-on="on"
                     class="ml-1 hover pa-3"
-                    @click="$store.commit('calluser', user)"
+                    @click="
+                      $store.commit(
+                        'calluser',
+                        users.find((c) => c.id === user + 1)
+                      )
+                    "
                     x-small
                     outlined
                     icon
@@ -296,7 +301,7 @@
         </v-list>
       </v-tab-item>
     </v-tabs-items>
-    <v-dialog v-model="dialog" width="33vw">
+    <v-dialog v-model="dialog" width="33vw" overlay-opacity="0.9">
       <Calling />
     </v-dialog>
   </v-sheet>

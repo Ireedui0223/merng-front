@@ -87,13 +87,9 @@
                 <v-icon
                   class="iconhover"
                   @click="
-                    commit(
-                      $store.commit(
-                        downloadimage(
-                          chat.message.attached.url,
-                          chat.message.attached.title
-                        )
-                      )
+                    $store.commit(
+                      'downloadimage',
+                      (chat.message.attached.url, chat.message.attached.title)
                     )
                   "
                   >mdi-cloud-download-outline</v-icon
@@ -152,12 +148,7 @@ export default {
   data() {
     return {};
   },
-  methods: {
-    download() {
-      const url = "/users/download";
-      window.location.href = url;
-    },
-  },
+  methods: {},
   computed: {
     ...mapState({
       images: (state) => state.image,

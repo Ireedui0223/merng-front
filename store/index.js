@@ -19,6 +19,22 @@ export const state = () => ({
       name: "",
     },
   },
+
+  snackbar: {
+    color: "danger",
+    message: "Login required to access workspace",
+    value: true,
+  },
+  uploadedImage: [{}],
+  randomUser: "https://randomuser.me/api/portraits/med/women/",
+});
+
+export const getters = {
+  getSnackBar: (state) => {
+    return state.snackbar;
+  },
+};
+export const mutations = {
   downloadimage(url, fileName) {
     var xhr = new XMLHttpRequest();
     xhr.open("GET", url, true);
@@ -35,21 +51,6 @@ export const state = () => ({
     };
     xhr.send();
   },
-  snackbar: {
-    color: "danger",
-    message: "Login required to access workspace",
-    value: true,
-  },
-  uploadedImage: [{}],
-  randomUser: "https://randomuser.me/api/portraits/med/women/",
-});
-
-export const getters = {
-  getSnackBar: (state) => {
-    return state.snackbar;
-  },
-};
-export const mutations = {
   setfileNavBar(state, payload) {
     state.fileNavBar = payload;
   },

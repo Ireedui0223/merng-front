@@ -10,7 +10,7 @@
     <v-card-title
       class="font-weight-bold text-h6 pt-8 grey--text text--darken-3"
     >
-      {{ $store.state.calling.user.name }}
+      Calling {{ $store.state.calling.user.name }}
     </v-card-title>
     <v-card-subtitle
       class="px-3 text-center text-body-1"
@@ -23,9 +23,9 @@
       <v-card-actions class="mt-10">
         <v-btn width="11vw" color="transparent" elevation="0">
           <v-icon color="grey" small>mdi-phone-outgoing-outline</v-icon>
-          <p class="pa-0 ma-0 grey--text text--darken-1 text-caption">
+          <span class="pa-0 ma-0 grey--text text--darken-1 text-caption">
             Call again
-          </p></v-btn
+          </span></v-btn
         >
         <v-btn
           @click="$store.commit('endcall')"
@@ -33,23 +33,16 @@
           color="transparent"
           elevation="0"
           ><v-icon color="grey" small>mdi-chat-outline</v-icon>
-          <p class="pa-0 ma-0 grey--text text--darken-1 text-caption">
+          <span class="pa-0 ma-0 grey--text text--darken-1 text-caption">
             sent message
-          </p></v-btn
+          </span></v-btn
         >
       </v-card-actions>
-      <!-- <div class="d-flex flex-row justify-center pt-8">
-        <v-btn class="pr-2 text-h5" color="transparent" elevation="0"
-          ><v-icon>mdi-phone-outgoing-outline</v-icon>Call again</v-btn
-        ><v-btn class="pl-2 text-h5" color="transparent" elevation="0"
-          ><v-icon>mdi-chat-outline</v-icon>Call again</v-btn
-        >
-      </div> -->
     </v-card-subtitle>
-    <v-card-actions class="pt-16">
+    <v-card-actions>
       <v-btn
         width="20vw"
-        color="var(--v-chatground-base)"
+        color="var(--v-textground-base)"
         style="border: 1px solid rgb(197, 191, 191)"
         block
         class="py-6 text-body-2"

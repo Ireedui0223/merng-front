@@ -138,10 +138,8 @@
                 height="30px"
                 @click="
                   $store.commit(
-                    downloadImage(
-                      chat.message.attached.url,
-                      chat.message.attached.title
-                    )
+                    'downloadimage',
+                    (chat.message.attached.url, chat.message.attached.title)
                   )
                 "
               >
