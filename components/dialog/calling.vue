@@ -7,19 +7,36 @@
     <v-avatar width="100px" height="100px">
       <v-img :src="$store.state.calling.user.image"> </v-img>
     </v-avatar>
+    <v-card-text
+      style="height: 100px"
+      class="pa-0 d-flex flex-row justify-center align-center"
+    >
+      <div class="animating">
+        <v-btn icon x-large>
+          <v-icon>mdi-phone</v-icon>
+        </v-btn>
+      </div>
+    </v-card-text>
     <v-card-title
-      class="font-weight-bold text-h6 pt-8 grey--text text--darken-3"
+      :style="$vuetify.theme.dark ? 'color: #aeaeae' : 'color: #515365'"
+      class="font-weight-bold text-h6 pt-0"
     >
       Calling {{ $store.state.calling.user.name }}
     </v-card-title>
     <v-card-subtitle
+      style="color: #757a91"
       class="px-3 text-center text-body-1"
       v-if="$store.state.calling.connected == false"
       >Looks like Kristie Brooks wasn't able to pick up the call. What would you
       like to do next?
     </v-card-subtitle>
-    <v-card-subtitle v-else class="text-body-1 text-center"
+    <v-card-subtitle
+      v-else
+      style="color: #757a91"
+      class="text-body-1 text-center"
       >We'll connect you when Mike Baggio picks up.
+
+      <!-- if not answered -->
       <v-card-actions class="mt-10">
         <v-btn width="11vw" color="transparent" elevation="0">
           <v-icon color="grey" small>mdi-phone-outgoing-outline</v-icon>
@@ -72,4 +89,33 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.animating {
+  background: green;
+  border-radius: 50%;
+  animation-name: call;
+  animation-duration: 4s;
+  animation-iteration-count: infinite;
+}
+@keyframes call {
+  0% {
+    background-color: rgb(22, 217, 9);
+    z-index: 1;
+  }
+  25% {
+    z-index: 2;
+    padding: 4px;
+    background-color: rgb(95, 248, 84);
+  }
+  50% {
+    z-index: 3;
+    padding: 8px;
+    background-color: rgb(140, 250, 133);
+  }
+  100% {
+    z-index: 4;
+    padding: 12px;
+    background-color: rgb(186, 252, 182);
+  }
+}
+</style>
