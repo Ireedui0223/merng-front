@@ -164,10 +164,7 @@
         </v-list>
       </v-list>
     </v-navigation-drawer>
-    <Chatlist
-      :user="user + 2"
-      style="background: var(--v-background-base); width: 100%"
-    />
+    <Chatlist :user="user + 2" class="set" />
     <v-navigation-drawer
       permanent
       disable-resize-watcher
@@ -242,5 +239,10 @@ export default {
 <style scoped>
 .plusbtn {
   border: 1px dotted rgba(168, 157, 157, 0.6);
+}
+.set {
+  width: 100%;
+  min-height: 100vh;
+  background: var(--v-background-base);
 }
 </style>
