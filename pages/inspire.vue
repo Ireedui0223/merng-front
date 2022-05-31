@@ -120,16 +120,32 @@
               <v-icon v-else>mdi-image-outline </v-icon>
             </v-list-item-avatar>
             <v-list-item-content>
-              <v-list-item-title>
+              <v-list-item-title
+                style="color: #444f60"
+                class="font-weight-light"
+              >
                 {{ chat.message.attached.title }}
               </v-list-item-title>
-              <v-list-item-subtitle>
+              <v-list-item-subtitle class="font-weight-thin">
                 {{ chat.message.attached.size / 1000 }} mb
               </v-list-item-subtitle>
             </v-list-item-content>
             <v-list-item-action class="d-flex flex-row">
-              <v-btn icon outlined width="30px" height="30px">
-                <v-icon small>mdi-cloud</v-icon>
+              <v-btn
+                icon
+                outlined
+                width="30px"
+                height="30px"
+                @click="
+                  $store.commit(
+                    downloadImage(
+                      chat.message.attached.url,
+                      chat.message.attached.title
+                    )
+                  )
+                "
+              >
+                <v-icon small>mdi-cloud-download-outline</v-icon>
               </v-btn>
               <v-btn
                 class="mx-1"
