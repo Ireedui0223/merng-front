@@ -20,6 +20,9 @@
   color: var(--v-inputtext-base) !important;
   font-weight: 300;
 }
+.v-input__prepend-inner{
+  margin-top: 12px !important;
+}
 
 /* .v-input__icon .v-input__icon--prepend-inner{
   color: darkgrey;

@@ -1,18 +1,23 @@
 <template>
-  <v-card height="100%" elevation="0" width="100%">
+  <v-card
+    class="mt-8"
+    elevation="0"
+    width="100%"
+    color="var(--v-textground-base)"
+  >
     <v-card-actions class="px-0 d-flex flex-row justify-space-between"
       ><v-btn icon @click="$store.commit('closeprofile')"
-        ><v-icon>mdi-close</v-icon></v-btn
+        ><v-icon color="#888da8" small>mdi-arrow-left</v-icon></v-btn
       >
       <div class="d-flex flex-row justify-end">
         <v-btn icon>
-          <v-icon> mdi-camera </v-icon>
+          <v-icon small color="#888da8"> mdi-camera </v-icon>
         </v-btn>
         <v-btn icon>
-          <v-icon> mdi-video</v-icon>
+          <v-icon small color="#888da8"> mdi-video</v-icon>
         </v-btn>
         <v-btn icon>
-          <v-icon> mdi-microphone </v-icon>
+          <v-icon color="#888da8" small> mdi-microphone </v-icon>
         </v-btn>
       </div>
     </v-card-actions>
@@ -37,25 +42,66 @@
       <h3 class="text-h5 ma-0 pa-0">{{ profile.user.name }} Ipsum</h3>
       <p class="text-body-1 ma-0 pa-0">Software Engineer</p>
       <div>
-        <v-btn outlined icon>
-          <v-icon> mdi-plus </v-icon>
+        <v-btn
+          style="border: 1px solid #31374b"
+          icon
+          class="hover"
+          :style="$vuetify.theme.dark ? 'background: #292e3f' : ''"
+        >
+          <v-icon :color="$vuetify.theme.dark ? '#757a91' : '#888da8'" small>
+            mdi-plus
+          </v-icon>
         </v-btn>
-        <v-btn outlined icon>
-          <v-icon> mdi-phone</v-icon>
+        <v-btn
+          class="hover"
+          style="border: 1px solid #31374b"
+          icon
+          :style="$vuetify.theme.dark ? 'background: #292e3f' : ''"
+        >
+          <v-icon
+            @click="$store.commit('calluser', profile)"
+            :color="$vuetify.theme.dark ? '#757a91' : '#888da8'"
+            small
+          >
+            mdi-phone-outline</v-icon
+          >
         </v-btn>
-        <v-btn outlined icon>
-          <v-icon> mdi-mail </v-icon>
+        <v-btn
+          class="hover"
+          style="border: 1px solid #31374b"
+          icon
+          :style="$vuetify.theme.dark ? 'background: #292e3f' : ''"
+        >
+          <v-icon :color="$vuetify.theme.dark ? '#757a91' : '#888da8'" small>
+            mdi-email-outline
+          </v-icon>
         </v-btn>
-        <v-btn outlined icon>
-          <v-icon> mdi-bell </v-icon>
+        <v-btn
+          class="hover"
+          style="border: 1px solid #31374b"
+          icon
+          :style="$vuetify.theme.dark ? 'background: #292e3f' : ''"
+        >
+          <v-icon :color="$vuetify.theme.dark ? '#757a91' : '#888da8'" small>
+            mdi-bell-outline
+          </v-icon>
         </v-btn>
       </div>
     </v-card-subtitle>
     <v-card-text>
       <v-row>
         <v-col cols="6">
-          <v-card elevation="0" outlined class="text-center">
-            <v-card-title class="grey--text text-lighten-1 justify-center">
+          <v-card
+            elevation="0"
+            height="80px"
+            color="var(--v-chatground-base)"
+            outlined
+            style="border: 1px solid #31374b"
+            class="text-center d-flex flex-column justify-center align-center"
+          >
+            <v-card-title
+              class="grey--text text-body-1 text-body-1 text-lighten-1 justify-center"
+            >
               project
             </v-card-title>
             <v-card-subtitle class="text-h5 font-weight-bold">
@@ -64,8 +110,17 @@
           </v-card>
         </v-col>
         <v-col cols="6">
-          <v-card elevation="0" outlined class="text-center">
-            <v-card-title class="grey--text text-lighten-1 justify-center">
+          <v-card
+            height="80px"
+            elevation="0"
+            color="var(--v-chatground-base)"
+            outlined
+            style="border: 1px solid #31374b"
+            class="text-center d-flex flex-column justify-center align-center"
+          >
+            <v-card-title
+              class="grey--text text-body-1 text-lighten-1 justify-center"
+            >
               teams
             </v-card-title>
             <v-card-subtitle class="text-h5 font-weight-bold">
@@ -74,8 +129,17 @@
           </v-card>
         </v-col>
         <v-col cols="6">
-          <v-card elevation="0" outlined class="text-center">
-            <v-card-title class="grey--text text-lighten-1 justify-center">
+          <v-card
+            height="80px"
+            elevation="0"
+            color="var(--v-chatground-base)"
+            outlined
+            style="border: 1px solid #31374b"
+            class="text-center d-flex flex-column justify-center align-center"
+          >
+            <v-card-title
+              class="grey--text text-body-1 text-lighten-1 justify-center"
+            >
               posts
             </v-card-title>
             <v-card-subtitle class="text-h5 font-weight-bold">
@@ -84,8 +148,17 @@
           </v-card>
         </v-col>
         <v-col cols="6">
-          <v-card elevation="0" outlined class="text-center">
-            <v-card-title class="grey--text text-lighten-1 justify-center">
+          <v-card
+            height="80px"
+            elevation="0"
+            color="var(--v-chatground-base)"
+            outlined
+            style="border: 1px solid #31374b"
+            class="text-center d-flex flex-column justify-center align-center"
+          >
+            <v-card-title
+              class="grey--text text-body-1 text-lighten-1 justify-center"
+            >
               comments
             </v-card-title>
             <v-card-subtitle class="text-h5 font-weight-bold">

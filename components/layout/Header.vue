@@ -281,4 +281,8 @@ export default {
   > .v-input__slot {
   box-shadow: none !important;
 }
+.v-input__icon--prepend-inner {
+  margin-bottom: 8px;
+  margin-left: -4px;
+}
 </style>
