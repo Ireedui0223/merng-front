@@ -84,7 +84,18 @@
                 </v-list-item-subtitle>
               </v-list-item-content>
               <v-list-item-action>
-                <v-icon class="iconhover" @click="download()"
+                <v-icon
+                  class="iconhover"
+                  @click="
+                    commit(
+                      $store.commit(
+                        downloadimage(
+                          chat.message.attached.url,
+                          chat.message.attached.title
+                        )
+                      )
+                    )
+                  "
                   >mdi-cloud-download-outline</v-icon
                 >
               </v-list-item-action>
