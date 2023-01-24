@@ -33,47 +33,13 @@ export default {
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
-  modules: ["@nuxtjs/apollo", ["cookie-universal-nuxt", { alias: "cookiz" }]],
+  modules: [],
 
-  apollo: {
-    tokenName: "token",
-    authenticationType: "Bearer ",
-    clientConfigs: {
-      default: {
-        tokenName: "token",
-        authenticationType: "Bearer ",
-        httpEndpoint: "http://localhost:5000/",
-      },
-    },
-    defaultOptions: {
-      $query: {
-        loadingKey: "loading",
-        fetchPolicy: "network-only",
-      },
-      $mutation: {
-        loadingKey: "loading",
-        fetchPolicy: "newwork-only",
-      },
-    },
-  },
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
   vuetify: {
     customVariables: ["~/assets/variables.scss"],
-    theme: {
-      dark: true,
-      themes: {
-        dark: {
-          primary: colors.blue.darken2,
-          accent: colors.grey.darken3,
-          sky: "#03f4fc",
-          secondary: colors.amber.darken3,
-          info: colors.teal.lighten1,
-          warning: colors.amber.base,
-          error: colors.deepOrange.accent4,
-          success: colors.green.accent3,
-        },
-      },
-    },
+    optionsPath: "./vuetify.options.js",
+    treeShake: true,
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build

@@ -1,96 +1,141 @@
 <template>
-  <v-row v-if="!$apollo.queries.getPosts.loading">
-    <!-- <p v-if="$fetchState.pending">loading...</p>
-    <v-row v-else> -->
-    <!-- {{ Posts }}
-    <br />
-    {{ getPosts }} -->
-    <!-- <v-progress-circular indeterminate color="red"></v-progress-circular> -->
-    <v-col v-if="currentUser">
-      <v-card height="100%" class="d-flex flex-column justify-space-around">
-        <v-card-title class="text-h4"> Create post </v-card-title>
-        <v-card-text>
+  <v-row class="pa-0 ma-0" style="height: 100%">
+    <v-col
+      cols="8"
+      class="d-flex justify-center align-center"
+      style="background: #f5f5f0"
+    >
+      <v-img
+        height="66%"
+        contain
+        src="https://moebius.cssninja.io/img/illustrations/screen-1.png"
+      ></v-img
+    ></v-col>
+    <v-col cols="4" class="d-flex flex-column justify-center">
+      <div class="d-flex justify-center align-center">
+        <NuxtLogo style="height: 52px; position: absolute; top: 25px" />
+      </div>
+      <v-card class="px-8" elevation="0">
+        <v-card-title
+          class="pt-10 pb-13 d-flex flex-column justify-start align-start"
+          ><p class="text-h4 pt-2 black--text text-lighten-3 font-weight-light">
+            Welcome Back.
+          </p>
+          <p class="pb-1 grey--text text-body-1 font-weight-light">
+            Please sign in to your account
+          </p>
+
+          <p>
+            <nuxt-link
+              to="auth/register"
+              class="text-decoration-none text-body-2 font-weight-light"
+              >i do not have an account yet</nuxt-link
+            >
+          </p>
+        </v-card-title>
+        <v-card-text class="pb-0">
           <v-text-field
+            height="40px"
             outlined
+            class="pb-3"
+            dense
+            :rules="[rules.required, rules.email]"
+            v-model="userName"
             hide-details=""
-            clearable
-            placeholder="post body"
-            v-model="body"
+            prepend-inner-icon="mdi-email-outline"
           ></v-text-field>
-          <v-card-actions class="px-0">
-            <v-btn @click="createPost({ body })">create post</v-btn>
-          </v-card-actions>
+          <v-text-field
+            height="40px"
+            v-model="password"
+            type="password"
+            dense
+            hide-details=""
+            outlined
+            prepend-inner-icon="mdi-lock-outline"
+          ></v-text-field>
         </v-card-text>
+        <v-card-actions class="d-flex flex-column px-4 pt-0 align-start">
+          <div class="d-flex flex-row align-center pb-3">
+            <v-switch
+              color="primary"
+              inset
+              background-color="transparent"
+              dense
+            ></v-switch>
+            <p class="text-body-1 font-weight-light pa-0 ma-0">Remember Me</p>
+          </div>
+          <v-btn
+            color="primary"
+            class="text-body-1 text-capitalize white--text"
+            block
+            @click="login(userName, password)"
+            >Sign in</v-btn
+          >
+          <nuxt-link
+            class="pt-2 text-body-1 font-weight-light text-decoration-none grey--text"
+            to="/auth/forgotpassword"
+          >
+            Forgot Password?</nuxt-link
+          >
+        </v-card-actions>
       </v-card>
-    </v-col>
-    <v-col cols="6" v-for="(post, index) in posts || []" :key="index">
-      <Dialog :post="post" :randomimage="randomimage + index" />
-      <!-- <pre>{{ post }}</pre> -->
     </v-col>
   </v-row>
 </template>
 
 <script>
-import { mapState, mapActions } from "Vuex";
-import { postsQuery } from "~/apollo/queries/post";
-import { userQuery } from "~/apollo/queries/user";
-
-import Dialog from "~/components/dialog";
+import NuxtLogo from "~/components/NuxtLogo";
 export default {
-  components: {
-    Dialog,
-  },
   data() {
     return {
-      posts: [],
-      body: "",
-      randomimage: "https://picsum.photos/250/300?random=",
+      userName: "Ireedui@gmail.com",
+      password: "91853040",
+      rules: {
+        required: (value) => !!value || "Required.",
+        email: (value) => {
+          const pattern =
+            /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+          return pattern.test(value) || "Invalid e-mail.";
+        },
+      },
     };
   },
-
-  apollo: {
-    getPosts: {
-      query: postsQuery,
-      result({ data }) {
-        this.posts = data.getPosts;
-        console.log(data);
-      },
-      error(err) {
-        console.error(err);
-      },
-    },
-    currentUser: {
-      query: userQuery,
-    },
-  },
-
-  // async fetch() {
-  //   await this.getPosts();
-  //   .then(({ data: { post } }) => {
-  //     console.log("test ");
-  //     console.log(post);
-  //   })
-  //   .catch((err) => {
-  //     console.log(err);
-  //   });
-  // },
-  computed: {
-    name() {
-      return this.data;
-    },
+  created() {
+    this.$vuetify.theme.dark = false;
   },
   methods: {
-    ...mapActions({
-      createPost: "createPost",
-      getPosts: "getPosts",
-    }),
-    // deletePost(id) {
-    //   // await mutaet
-    //   // then {
-    //     this.$apollo.queries.getPosts.refetch()
-    //   }
+    login(userName, password) {
+      this.$store.commit("setUser", userName);
+      this.$router.push("/inspire");
+    },
   },
-  // },
-  name: "IndexPage",
+  //   computed: {
+  //     userName: {
+  //       get: function () {
+  //         return this.$store.state.userName;
+  //       },
+  //       set: function (newValue) {
+  //         this.$store.commit("setUser", newValue);
+  //       },
+  //     },
+  //     password: {
+  //       get: function () {
+  //         return this.$store.state.password;
+  //       },
+  //       set: function (newValue) {
+  //         this.$store.commit("setPassword", newValue);
+  //       },
+  //     },
+  //   },
+  components: {
+    NuxtLogo,
+  },
 };
 </script>
+
+<style>
+p {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+</style>
